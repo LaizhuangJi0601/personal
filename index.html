@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>张宇翔 - 个人主页</title>
+  <style>
+    :root {
+      --blue-1: #234b7c;
+      --blue-2: #2c568f;
+      --blue-3: #3f74ba;
+      --text-main: #16335b;
+      --text-body: #2a3b52;
+      --text-muted: #8aa5c8;
+      --line: #e5ebf3;
+      --bg: #f3f6fb;
+      --white: #ffffff;
+      --shadow: 0 8px 26px rgba(18, 43, 77, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-body);
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+      line-height: 1.8;
+    }
+
+    a {
+      color: #8fd0ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 22px auto 40px;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    /* 顶部信息区 */
+    .hero {
+      background: linear-gradient(180deg, var(--blue-2), var(--blue-1));
+      color: #fff;
+      padding: 42px 48px 34px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 38px;
+      align-items: start;
+    }
+
+    .avatar-wrap {
+      width: 220px;
+      height: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.22);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+      background: rgba(255,255,255,0.06);
+      position: relative;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #dfe7f2;
+    }
+
+    .avatar-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: rgba(255,255,255,0.9);
+      padding: 16px;
+      font-size: 14px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    }
+
+    .identity {
+      margin-top: 2px;
+    }
+
+    .name-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .name-cn {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .name-en {
+      font-size: 20px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      row-gap: 8px;
+      column-gap: 14px;
+      max-width: 780px;
+      font-size: 15px;
+    }
+
+    .info-grid .label {
+      color: rgba(255,255,255,0.95);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .info-grid .value {
+      color: rgba(255,255,255,0.95);
+    }
+
+    .info-grid .value.muted {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .info-grid .value a {
+      color: #8fd0ff;
+    }
+
+    .school {
+      margin-top: 12px;
+      color: rgba(160, 196, 240, 0.95);
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    /* 导航标签 */
+    .tabs {
+      display: flex;
+      gap: 0;
+      background: #f8fbff;
+      border-bottom: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    .tabs a {
+      color: #1f3e67;
+      font-weight: 500;
+      padding: 16px 28px;
+      display: inline-block;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all .15s ease;
+    }
+
+    .tabs a:hover {
+      background: #eef4ff;
+      text-decoration: none;
+    }
+
+    .tabs a.active {
+      border-bottom-color: #3d79d8;
+      color: #133766;
+      font-weight: 700;
+      background: #f3f8ff;
+    }
+
+    /* 正文区域 */
+    .content {
+      padding: 34px 48px 48px;
+      background: #fff;
+    }
+
+    .section {
+      margin-bottom: 34px;
+      scroll-margin-top: 24px;
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      color: var(--text-main);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.3;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+
+    .section h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100px;
+      height: 3px;
+      border-radius: 999px;
+      background: #2f67d8;
+    }
+
+    .section p {
+      margin: 0 0 18px;
+      font-size: 16px;
+      color: var(--text-body);
+      text-align: justify;
+    }
+
+    .research-list {
+      margin: 6px 0 0;
+      padding-left: 28px;
+      font-size: 16px;
+      color: var(--text-body);
+    }
+
+    .research-list li {
+      margin: 10px 0;
+      padding-left: 4px;
+    }
+
+    .placeholder-card {
+      border: 1px dashed #c7d7ee;
+      background: #f8fbff;
+      color: #5f7da7;
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 15px;
+    }
+
+    .footer {
+      padding: 18px 48px 28px;
+      border-top: 1px solid var(--line);
+      color: #6a7d96;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .small-note {
+      margin-top: 8px;
+      color: #8aa0bb;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        padding: 28px 20px 24px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .avatar-wrap {
+        width: 180px;
+        height: 245px;
+      }
+
+      .name-cn {
+        font-size: 28px;
+      }
+
+      .name-en {
+        font-size: 18px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        row-gap: 4px;
+      }
+
+      .info-grid .label {
+        margin-top: 8px;
+      }
+
+      .tabs a {
+        padding: 14px 18px;
+      }
+
+      .content {
+        padding: 24px 20px 28px;
+      }
+
+      .footer {
+        padding: 16px 20px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 顶部信息区 -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="avatar-wrap">
+          <!-- 将头像放到 images/avatar.jpg（建议裁剪为竖版证件照） -->
+          <img src="images/avatar.jpg" alt="张宇翔照片" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="avatar-fallback">请将头像图片放到<br />images/avatar.jpg</div>
+        </div>
+
+        <div class="identity">
+          <div class="name-line">
+            <div class="name-cn">张宇翔</div>
+            <div class="name-en">Yuxiang Zhang</div>
+          </div>
+
+          <div class="info-grid">
+            <div class="label">职务/职称</div>
+            <div class="value">副教授</div>
+
+            <div class="label">博士招生专业</div>
+            <div class="value muted">（可补充）</div>
+
+            <div class="label">学术型硕士招生专业</div>
+            <div class="value">140100 集成电路科学与工程</div>
+
+            <div class="label">专业型硕士招生专业</div>
+            <div class="value">085403 集成电路工程</div>
+
+            <div class="label">办公地点</div>
+            <div class="value">科研楼 727</div>
+
+            <div class="label">邮箱</div>
+            <div class="value">
+              <a href="mailto:zhangyx@bupt.edu.cn">zhangyx@bupt.edu.cn</a>
+            </div>
+          </div>
+
+          <div class="school">北京邮电大学</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 标签导航 -->
+    <nav class="tabs" id="tabs">
+      <a href="#profile" class="active">个人简介</a>
+      <a href="#research">研究方向</a>
+      <a href="#results">代表性成果</a>
+      <a href="#honors">荣誉奖项</a>
+    </nav>
+
+    <!-- 正文内容 -->
+    <main class="content">
+      <section id="profile" class="section">
+        <h2>个人简介</h2>
+        <p>
+          张宇翔，北京邮电大学副教授，中国通信学会天线与射频分会委员、智能超表面技术专业委员会委员、北京通信学会青年工作委员会委员。长期从事移动通信无线信道建模预测和数字孪生等技术研究。在相关领域发表SCI/EI检索论文60余篇，其中ESI高被引1篇，热点论文3篇；授权发明专利10余项；入选北京市科协青年人才托举工程和全球6G技术大会“6G星辰青年学者”。
+        </p>
+        <p>
+          主持国家自然科学青年基金项目、国家重点研发计划课题等，参与国家自然科学基金、国家重点研发计划、国家科技重大专项等国家、省部级项目10余项。被国际标准化组织3GPP和ITU等采纳提案30余篇，形成3GPP国际标准1项。
+        </p>
+        <p>
+          作为第一完成人获2025年中国通信学会科技进步二等奖，作为主要完成人获2025年中国电子学会科技进步一等奖、2021年中国通信学会技术发明一等奖、2025年中国电子学会电子信息教学成果大赛一等奖、第四十九届日内瓦国际发明展金奖、IEEE ICCC 2025最佳演示奖等。
+        </p>
+      </section>
+
+      <section id="research" class="section">
+        <h2>主要研究方向</h2>
+        <ol class="research-list">
+          <li>面向第六代移动通信的空天地海复杂场景无线信道测量与建模理论</li>
+          <li>面向无线信道和网络数字孪生的AI基座大模型、智能体和具身智能关键技术</li>
+          <li>面向未来移动通信系统的无线信道模拟与空天地海通信系统测试方法</li>
+        </ol>
+      </section>
+
+      <section id="results" class="section">
+        <h2>代表性成果</h2>
+        <div class="placeholder-card">
+          截图中该部分未展开显示，这里先预留版块。你后续可以补充论文、专利、标准、项目成果等内容。
+        </div>
+      </section>
+
+      <section id="honors" class="section">
+        <h2>荣誉奖项</h2>
+        <div class="placeholder-card">
+          截图中该部分未展开显示，这里先预留版块。你后续可以补充时间、奖项名称、等级、个人角色等信息。
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© 2026 张宇翔 | 北京邮电大学</div>
+      <div class="small-note">
+        本页面为 GitHub Pages 静态页面示例，可继续扩展为论文列表、项目展示、招生信息、联系方式等完整个人主页。
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // 根据滚动位置高亮顶部标签（可选增强）
+    (function () {
+      const sections = Array.from(document.querySelectorAll(".section"));
+      const links = Array.from(document.querySelectorAll(".tabs a"));
+
+      function setActive() {
+        const y = window.scrollY + 140;
+        let currentId = sections[0]?.id || "";
+
+        for (const sec of sections) {
+          if (sec.offsetTop <= y) currentId = sec.id;
+        }
+
+        links.forEach(link => {
+          const isActive = link.getAttribute("href") === "#" + currentId;
+          link.classList.toggle("active", isActive);
+        });
+      }
+
+      window.addEventListener("scroll", setActive, { passive: true });
+      window.addEventListener("load", setActive);
+    })();
+  </script>
+</body>
+</html>
